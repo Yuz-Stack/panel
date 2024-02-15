@@ -9,8 +9,6 @@ import type { AppProps } from 'next/app'
 
 
 
-
-
 // ** Loader Import
 import NProgress from 'nprogress'
 
@@ -23,11 +21,8 @@ import type { EmotionCache } from '@emotion/cache'
 import { defaultACLObj } from 'src/configs/acl'
 import themeConfig from 'src/configs/themeConfig'
 
-// ** Fake-DB Import
-import 'src/@fake-db'
-
 // ** Third Party Import
-import { Toaster } from 'react-hot-toast'
+// import { Toaster } from 'react-hot-toast'
 
 // ** Component Imports
 import UserLayout from 'src/layouts/UserLayout'
@@ -44,7 +39,7 @@ import { AuthProvider } from 'src/context/AuthContext'
 import { SettingsConsumer, SettingsProvider } from 'src/@core/context/settingsContext'
 
 // ** Styled Components
-import ReactHotToast from 'src/@core/styles/libs/react-hot-toast'
+// import ReactHotToast from 'src/@core/styles/libs/react-hot-toast'
 
 // ** Utils Imports
 import { createEmotionCache } from 'src/@core/utils/create-emotion-cache'
@@ -141,9 +136,9 @@ const App = (props: ExtendedAppProps) => {
                         {getLayout(<Component {...pageProps} />)}
                       </AclGuard>
                     </Guard>
-                    <ReactHotToast>
-                      <Toaster position={settings.toastPosition} toastOptions={{ className: 'react-hot-toast' }} />
-                    </ReactHotToast>
+                    {/* <ReactHotToast> */}
+                      {/* <Toaster position={settings.toastPosition} toastOptions={{ className: 'react-hot-toast' }} /> */}
+                    {/* </ReactHotToast> */}
                   </ThemeComponent>
                 )
               }}
