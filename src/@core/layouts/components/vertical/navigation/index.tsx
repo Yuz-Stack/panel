@@ -137,13 +137,10 @@ const Navigation = (props: Props) => {
   return (
     <ThemeProvider theme={darkTheme}>
       <Drawer {...props} navHover={navHover} setNavHover={setNavHover}>
-        <VerticalNavHeader {...props} navHover={navHover} />
-        {beforeNavMenuContent && beforeVerticalNavMenuContentPosition === 'fixed'
-          ? beforeNavMenuContent(navMenuContentProps)
-          : null}
         {(beforeVerticalNavMenuContentPosition === 'static' || !beforeNavMenuContent) && (
           <StyledBoxForShadow ref={shadowRef} />
         )}
+
         <Box sx={{ position: 'relative', overflow: 'hidden' }}>
           {/* @ts-ignore */}
           <ScrollWrapper
@@ -161,10 +158,11 @@ const Navigation = (props: Props) => {
             {beforeNavMenuContent && beforeVerticalNavMenuContentPosition === 'static'
               ? beforeNavMenuContent(navMenuContentProps)
               : null}
+
             {userNavMenuContent ? (
               userNavMenuContent(navMenuContentProps)
             ) : (
-              <List className='nav-items' sx={{ pt: 0, '& > :first-child': { mt: '0' } }}>
+              <>
                 <VerticalNavItems
                   navHover={navHover}
                   groupActive={groupActive}
@@ -173,7 +171,7 @@ const Navigation = (props: Props) => {
                   setCurrentActiveGroup={setCurrentActiveGroup}
                   {...props}
                 />
-              </List>
+              </>
             )}
             {afterNavMenuContent && afterVerticalNavMenuContentPosition === 'static'
               ? afterNavMenuContent(navMenuContentProps)

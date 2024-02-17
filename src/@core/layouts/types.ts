@@ -31,28 +31,20 @@ export type BlankLayoutWithAppBarProps = {
   children: ReactNode
 }
 
-export type NavSectionTitle = {
-  auth?: boolean
-  action?: string
-  subject?: string
-  sectionTitle: string
-}
-
-export type NavGroup = {
-  icon?: string
-  title: string
-  auth?: boolean
-  action?: string
-  subject?: string
-  badgeContent?: string
-  children?: (NavGroup | NavLink)[]
-  badgeColor?: 'default' | 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'info'
-}
+// export type NavSectionTitle = {
+//   auth?: boolean
+//   action?: string
+//   subject?: string
+//   sectionTitle: string
+// }
 
 export type NavLink = {
-  icon?: string
-  path?: string
+  icon?: any
+  path: string
   title: string
+
+  shortTitle?: string
+  caption?: string
   auth?: boolean
   action?: string
   subject?: string
@@ -61,10 +53,11 @@ export type NavLink = {
   externalLink?: boolean
   openInNewTab?: boolean
   badgeColor?: 'default' | 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'info'
+  children?: NavLink[]
 }
 
-export type VerticalNavItemsType = (NavLink | NavGroup | NavSectionTitle)[]
-export type HorizontalNavItemsType = (NavLink | NavGroup)[]
+export type VerticalNavItemsType = NavLink[]
+export type HorizontalNavItemsType = NavLink[]
 
 export type FooterProps = {
   sx?: SxProps<Theme>

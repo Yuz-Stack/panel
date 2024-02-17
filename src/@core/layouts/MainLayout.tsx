@@ -2,25 +2,17 @@
 import { useState } from 'react'
 
 // ** MUI Imports
-import Fab from '@mui/material/Fab'
 import { styled } from '@mui/material/styles'
 import Box, { BoxProps } from '@mui/material/Box'
 
-// ** Icon Imports
-import Icon from 'src/@core/components/icon'
-
-// ** Theme Config Import
 import themeConfig from 'src/configs/themeConfig'
-
-// ** Type Import
 import { LayoutProps } from 'src/@core/layouts/types'
-
-// ** Components
 import AppBar from './components/vertical/appBar'
 import Customizer from 'src/@core/components/customizer'
 import Navigation from './components/vertical/navigation'
 import Footer from './components/shared-components/footer'
-import ScrollToTop from 'src/@core/components/scroll-to-top'
+
+// import ScrollToTop from 'src/@core/components/scroll-to-top'
 
 const VerticalLayoutWrapper = styled('div')({
   height: '100%',
@@ -46,9 +38,18 @@ const ContentWrapper = styled('main')(({ theme }) => ({
   }
 }))
 
-const VerticalLayout = (props: LayoutProps) => {
+const MainLayout = (props: LayoutProps) => {
   // ** Props
-  const { hidden, settings, children, scrollToTop, footerProps, contentHeightFixed, verticalLayoutProps } = props
+  const {
+    hidden,
+    settings,
+    children,
+
+    // scrollToTop,
+    footerProps,
+    contentHeightFixed,
+    verticalLayoutProps
+  } = props
 
   // ** Vars
   const { skin, navHidden, contentWidth } = settings
@@ -67,7 +68,7 @@ const VerticalLayout = (props: LayoutProps) => {
     <>
       <VerticalLayoutWrapper className='layout-wrapper'>
         {/* Navigation Menu */}
-        {navHidden && !(navHidden && settings.lastLayout === 'horizontal') ? null : (
+        {navHidden && !navHidden ? null : (
           <Navigation
             navWidth={navWidth}
             navVisible={navVisible}
@@ -86,6 +87,7 @@ const VerticalLayout = (props: LayoutProps) => {
             {...props}
           />
         )}
+
         <MainContentWrapper
           className='layout-content-wrapper'
           sx={{ ...(contentHeightFixed && { maxHeight: '100vh' }) }}
@@ -125,7 +127,7 @@ const VerticalLayout = (props: LayoutProps) => {
       {disableCustomizer || hidden ? null : <Customizer />}
 
       {/* Scroll to top button */}
-      {scrollToTop ? (
+      {/* {scrollToTop ? (
         scrollToTop(props)
       ) : (
         <ScrollToTop className='mui-fixed'>
@@ -133,9 +135,9 @@ const VerticalLayout = (props: LayoutProps) => {
             <Icon icon='mdi:arrow-up' />
           </Fab>
         </ScrollToTop>
-      )}
+      )} */}
     </>
   )
 }
 
-export default VerticalLayout
+export default MainLayout

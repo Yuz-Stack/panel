@@ -21,8 +21,8 @@ export type Settings = {
   navCollapsed: boolean
   themeColor: ThemeColor
   contentWidth: ContentWidth
-  layout?: 'vertical' | 'horizontal'
-  lastLayout?: 'vertical' | 'horizontal'
+  layout?: 'vertical'
+  lastLayout?: 'vertical'
   verticalNavToggleType: VerticalNavToggle
   toastPosition?: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'
 }
@@ -67,7 +67,7 @@ const initialSettings: Settings = {
   contentWidth: themeConfig.contentWidth,
   toastPosition: themeConfig.toastPosition,
   verticalNavToggleType: themeConfig.verticalNavToggleType,
-  appBar: themeConfig.layout === 'horizontal' && themeConfig.appBar === 'hidden' ? 'fixed' : themeConfig.appBar
+  appBar: themeConfig.appBar
 }
 
 const staticSettings = {
@@ -132,17 +132,6 @@ export const SettingsProvider = ({ children, pageSettings }: SettingsProviderPro
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageSettings])
-
-  useEffect(() => {
-    if (settings.layout === 'horizontal' && settings.mode === 'semi-dark') {
-      saveSettings({ ...settings, mode: 'light' })
-    }
-    if (settings.layout === 'horizontal' && settings.appBar === 'hidden') {
-      saveSettings({ ...settings, appBar: 'fixed' })
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [settings.layout])
 
   const saveSettings = (updatedSettings: Settings) => {
     storeSettings(updatedSettings)
