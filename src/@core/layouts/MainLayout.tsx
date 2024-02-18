@@ -8,7 +8,6 @@ import Box, { BoxProps } from '@mui/material/Box'
 import themeConfig from 'src/configs/themeConfig'
 import { LayoutProps } from 'src/@core/layouts/types'
 import AppBar from './components/vertical/appBar'
-import Customizer from 'src/@core/components/customizer'
 import Navigation from './components/vertical/navigation'
 import Footer from './components/shared-components/footer'
 
@@ -16,7 +15,8 @@ import Footer from './components/shared-components/footer'
 
 const VerticalLayoutWrapper = styled('div')({
   height: '100%',
-  display: 'flex'
+  display: 'flex',
+  backgroundColor: '#F5F7FA'
 })
 
 const MainContentWrapper = styled(Box)<BoxProps>({
@@ -41,7 +41,6 @@ const ContentWrapper = styled('main')(({ theme }) => ({
 const MainLayout = (props: LayoutProps) => {
   // ** Props
   const {
-    hidden,
     settings,
     children,
 
@@ -53,7 +52,7 @@ const MainLayout = (props: LayoutProps) => {
 
   // ** Vars
   const { skin, navHidden, contentWidth } = settings
-  const { navigationSize, disableCustomizer, collapsedNavigationSize } = themeConfig
+  const { navigationSize, collapsedNavigationSize } = themeConfig
   const navWidth = navigationSize
   const navigationBorderWidth = skin === 'bordered' ? 1 : 0
   const collapsedNavWidth = collapsedNavigationSize
@@ -122,9 +121,6 @@ const MainLayout = (props: LayoutProps) => {
           <Footer footerStyles={footerProps?.sx} footerContent={footerProps?.content} {...props} />
         </MainContentWrapper>
       </VerticalLayoutWrapper>
-
-      {/* Customizer */}
-      {disableCustomizer || hidden ? null : <Customizer />}
 
       {/* Scroll to top button */}
       {/* {scrollToTop ? (
